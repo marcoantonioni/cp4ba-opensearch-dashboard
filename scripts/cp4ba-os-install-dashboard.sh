@@ -1,8 +1,14 @@
 #!/bin/bash
 
-echo "Install Opensearch dashboard"
+_TNS=$1
+
+if [[ -z "${_TNS}" ]]; then
+  echo "set namespace" 
+  exit 1
+fi
 
 installOpensearchDashboard () {
+  echo "Install Opensearch dashboard in namespace ${_TNS}"
 
   _OS_SECRET_NAME=$(oc get cluster opensearch -n ${_TNS} -o jsonpath={.spec.plugins.security.internalUserSecret} 2>/dev/null 1>/dev/null)
   _OS_USERNAME=$(oc get secret ${_OS_SECRET_NAME} -n ${_TNS} -o json | jq -r '.data | keys[0]' 2>/dev/null 1>/dev/null)
@@ -167,13 +173,7 @@ EOF
 
 }
 
-_TNS=$1
-
-if [[ -z "${_TNS}" ]]; then
-  echo "set namespace" 
-  exit 1
-fi
 installOpensearchDashboard
-./cp4ba-os-dashboard-infos.sh ${_TNS}
 echo "Done"
+./cp4ba-os-dashboard-infos.sh ${_TNS}
 exit 0

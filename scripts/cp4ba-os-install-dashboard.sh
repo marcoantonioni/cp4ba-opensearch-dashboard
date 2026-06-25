@@ -27,6 +27,10 @@ installOpensearchDashboard () {
     --from-file=key.crt=/tmp/opensearch-key.crt \
     -n ${_TNS} 2>/dev/null 1>/dev/null
 
+  rm /tmp/opensearch-ca.crt 2>/dev/null 1>/dev/null
+  rm /tmp/opensearch-cert.crt 2>/dev/null 1>/dev/null
+  rm /tmp/opensearch-key.crt 2>/dev/null 1>/dev/null
+
 cat <<EOF | oc apply -f -  2>/dev/null 1>/dev/null
 apiVersion: v1
 kind: ConfigMap

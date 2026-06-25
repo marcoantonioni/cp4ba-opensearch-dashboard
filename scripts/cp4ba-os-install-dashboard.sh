@@ -149,7 +149,6 @@ metadata:
   name: opensearch-dashboard
   namespace: ${_TNS}
 spec:
-  #host: opensearch-dashboard-cp4ba-opensearch-prod.apps.itz-ldvw14.infra01-lb.wdc04.techzone.ibm.com
   to:
     kind: Service
     name: opensearch-dashboards

@@ -174,5 +174,6 @@ if [[ -z "${_TNS}" ]]; then
   exit 1
 fi
 installOpensearchDashboard
+./cp4ba-os-dashboard-infos.sh
 echo "Done"
 exit 0
